@@ -59,7 +59,7 @@ Ping check
 
 `/ping` is implemented by running all registered checks.
 
-On failure, an HTTP `500` is returned, with the body of the response being a `text/plain` text with each error on separate lines.
+On failure, an HTTP `503` is returned, with the body of the response being a `text/plain` text with each error on separate lines.
 
 On success, a `200 OK` is returned, with either the application's name as the body (if defined), or an empty body.
 

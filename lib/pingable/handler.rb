@@ -10,7 +10,7 @@ module Pingable
     def call(env)
       failures = Pingable.run_checks!
       if failures.any?
-        [500, HEADERS, failures.map { |f| f[:message] }.join("\n")]
+        [503, HEADERS, failures.map { |f| f[:message] }.join("\n")]
       else
         [200, HEADERS, @name ||= '']
       end
