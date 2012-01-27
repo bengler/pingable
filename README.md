@@ -52,3 +52,8 @@ These include:
 
 * A check to verify ActiveRecord's current connection.
 * A check to check the ability for Rails' cache to read and write values.
+
+License
+-------
+
+Licensed under the MIT license. See `LICENSE` file.
