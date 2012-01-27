@@ -2,8 +2,9 @@ module Pingable
 
   class Handler
 
-    def initialize(app)
+    def initialize(app, name = nil)
       @app = app
+      @name = name
     end
 
     def call(env)
@@ -11,15 +12,13 @@ module Pingable
       if failures.any?
         [500, HEADERS, failures.map { |f| f[:message] }.join("\n")]
       else
-        app_name = env['pingable.name']
-        app_name ||= ''
-        [200, HEADERS, app_name]
+        [200, HEADERS, @name ||= '']
       end
     end
 
     private
 
-      HEADERS = {'Cache-Control' => 'private'}
+      HEADERS = {'Cache-Control' => 'private', 'Content-Type': 'text/plain'}
 
   end
 

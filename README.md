@@ -1,7 +1,7 @@
-Pinger
-======
+Pingable
+========
 
-Pinger is a simple framework to implement a 'ping' URL in Rack-based web applications.
+Pingable is a simple framework to implement a 'ping' URL in Rack-based web applications.
 
 For example, a Rails or Sinatra app's `config.ru` may look like this:
 
@@ -18,6 +18,18 @@ Now you can add checks in a modular fashion:
       end
     }
 
+Checks
+------
+
+A check is simply an object which:
+
+* implements `call` with no arguments.
+* returns one of the following on error:
+  * a string
+  * a hash of `{:message => message}`
+  * an array of the above
+* returns nil on success.
+
 Something a bit more complex:
 
     class TwitterCheck
@@ -32,14 +44,24 @@ Something a bit more complex:
 
     Pingable.add_check TwitterCheck.new(:url => "http://twitter.com/")
 
-A check is simply an object which:
+Configuration
+-------------
 
-* implements `call` with no arguments.
-* returns one of the following on error:
-  * a string
-  * a hash of `{:message => message}`
-  * an array of the above
-* returns nil on success.
+To set the name that a successful ping check will return, provide a name in the rackup file:
+
+    map '/ping' do
+      use Pingable::Handler, 'my fancy app'
+    end
+    run MyApp
+
+Ping check
+----------
+
+`/ping` is implemented by running all registered checks.
+
+On failure, an HTTP `500` is returned, with the body of the response being a `text/plain` text with each error on separate lines.
+
+On success, a `200 OK` is returned, with either the application's name as the body (if defined), or an empty body.
 
 Common checks
 -------------

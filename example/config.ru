@@ -7,7 +7,7 @@ Pingable.add_check lambda {
 }
 
 map '/ping' do
-  use Pingable::Handler
+  use Pingable::Handler, "myapp"
 end
 run lambda { |env|
   [200, {'Content-Type' => 'text/plain'}, ['OK']]
