@@ -53,6 +53,8 @@ These include:
 * A check to verify ActiveRecord's current connection.
 * A check to check the ability for Rails' cache to read and write values.
 
+Common checks for are only installed for dependencies that are discovered automatically. For example, if ActiveRecord has not been `require`d, then the ActiveRecord check is not included.
+
 License
 -------
 
