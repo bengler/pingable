@@ -37,7 +37,7 @@ A check is simply an object which:
 * implements `call` with no arguments.
 * returns one of the following on error:
   * a string
-  * a hash of {:message => message}
+  * a hash of `{:message => message}`
   * an array of the above
 * returns nil on success.
 

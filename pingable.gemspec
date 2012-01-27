@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Alexander Staubo"]
   s.email       = ["alex@origo.no"]
   s.homepage    = "http://github.com/origo/pingable"
-  s.summary     = s.description = %q{Pingable is a Rack handler that let an app respond to a path /ping, with pluggable checks}
+  s.summary     = s.description = %q{Pingable is a Rack handler that let an app respond to a path /ping, with pluggable checks.}
 
   s.rubyforge_project = "pingable"
 
