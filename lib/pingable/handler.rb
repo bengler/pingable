@@ -12,7 +12,7 @@ module Pingable
       if failures.any?
         [503, HEADERS, failures.map { |f| f[:message] }.join("\n")]
       else
-        [200, HEADERS, @name ||= '']
+        [200, HEADERS, (@name ||= '').dup]
       end
     end
 
