@@ -16,11 +16,16 @@ module Pingable
 
       def add_active_record!
         if defined?(ActiveRecord)
+          require 'timeout'
           add_check lambda {
             begin
-              ActiveRecord::Base.verify_active_connections!
+              timeout(10) do
+                ActiveRecord::Base.verify_active_connections!
+              end
               ActiveRecord::Base.connection.execute('select 1')
               nil
+            rescue Timeout::Error
+              "ActiveRecord: Timed out"
             rescue Exception => e
               if e.class.name == e.message
                 "ActiveRecord: #{e}"
