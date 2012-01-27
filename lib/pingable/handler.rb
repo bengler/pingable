@@ -18,7 +18,7 @@ module Pingable
 
     private
 
-      HEADERS = {'Cache-Control' => 'private', 'Content-Type': 'text/plain'}
+      HEADERS = {'Cache-Control' => 'private', 'Content-Type' => 'text/plain'}
 
   end
 
