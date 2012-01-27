@@ -3,7 +3,7 @@ Pingable
 
 Pingable is a simple framework to implement a 'ping' URL in Rack-based web applications.
 
-For example, a Rails or Sinatra app's `config.ru` may look like this:
+For example, a Rails or Sinatra app's `config.ru` may look like this (Rack 1.4.0 and later):
 
     map '/ping' do
       use Pingable::Handler
@@ -43,6 +43,11 @@ Something a bit more complex:
     end
 
     Pingable.add_check TwitterCheck.new(:url => "http://twitter.com/")
+
+Rack compatibility
+------------------
+
+Pre-Rack 1.4.0, `map` seems broken, and requires jumping through a few hoops to mount different paths. See `example/config.ru` for an example.
 
 Configuration
 -------------
