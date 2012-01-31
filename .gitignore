@@ -4,3 +4,6 @@
 *.gem
 .bundle
 pkg/*
+example/Gemfile.lock
+*.sublime-workspace
+*.sublime-project
