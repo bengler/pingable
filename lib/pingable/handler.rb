@@ -2,8 +2,7 @@ module Pingable
 
   class Handler
 
-    def initialize(app, name = nil)
-      @app = app
+    def initialize(name = nil)
       @name = name
     end
 
