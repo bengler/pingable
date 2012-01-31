@@ -6,6 +6,10 @@ module Pingable
       @name = name
     end
 
+    def self.call(env)
+      new.call(env)
+    end
+
     def call(env)
       failures = Pingable.run_checks!
       if failures.any?

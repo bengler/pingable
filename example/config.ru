@@ -8,7 +8,7 @@ Pingable.add_check lambda {
 
 # Earlier Rack versions barf without this
 map '/ping' do
-  run Pingable::Handler.new('myapp')
+  run Pingable::Handler
 end
 map '/' do
   run lambda { |env|
