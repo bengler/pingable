@@ -5,18 +5,22 @@ Pingable is a simple framework to implement a 'ping' URL in Rack-based web appli
 
 For example, a Rails or Sinatra app's `config.ru` may look like this (Rack 1.4.0 and later):
 
-    map '/ping' do
-      run Pingable::Handler
-    end
-    run MyApp
+```ruby
+map '/ping' do
+  run Pingable::Handler
+end
+run MyApp
+```
 
 Now you can add checks in a modular fashion:
 
-    Pingable.add_check lambda {
-      unless check_something
-        "Oh noes, something failed"
-      end
-    }
+```ruby
+Pingable.add_check lambda {
+  unless check_something
+    "Oh noes, something failed"
+  end
+}
+```
 
 Checks
 ------
@@ -32,27 +36,31 @@ A check is simply an object which:
 
 Something a bit more complex:
 
-    class TwitterCheck
-      def initialize(url)
-        @url = url
-      end
+```ruby
+class TwitterCheck
+  def initialize(url)
+    @url = url
+  end
 
-      def call
-        # ... check the URL ...
-      end
-    end
+  def call
+    # ... check the URL ...
+  end
+end
 
-    Pingable.add_check TwitterCheck.new(:url => "http://twitter.com/")
+Pingable.add_check TwitterCheck.new(:url => "http://twitter.com/")
+```
 
 Configuration
 -------------
 
 To set the name that a successful ping check will return, provide a name in the rackup file:
 
-    map '/ping' do
-      use Pingable::Handler, 'my fancy app'
-    end
-    run MyApp
+```ruby
+map '/ping' do
+  use Pingable::Handler.new('my fancy app')
+end
+run MyApp
+```
 
 Ping check
 ----------
@@ -68,7 +76,9 @@ Common checks
 
 Pingable comes with a set of checks that are commonly needed for web applications. To install these, add the following:
 
-    Pingable.common_checks!
+```ruby
+Pingable.common_checks!
+```
 
 These include:
 
