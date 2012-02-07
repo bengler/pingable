@@ -74,18 +74,18 @@ On success, a `200 OK` is returned, with either the application's name as the bo
 Common checks
 -------------
 
-Pingable comes with a set of checks that are commonly needed for web applications. To install these, add the following:
+Pingable comes with a set of checks that are commonly needed for web applications:
+
+* `Pingable.active_record_checks!`: Checks ActiveRecord.
+* `Pingable.rails_cache_checks!`: Checks Rails cache.
+
+To install all common checks based on available dependencies:
 
 ```ruby
 Pingable.common_checks!
 ```
 
-These include:
-
-* A check to verify ActiveRecord's current connection.
-* A check to check the ability for Rails' cache to read and write values.
-
-Common checks for are only installed for dependencies that are discovered automatically. For example, if ActiveRecord has not been `require`d, then the ActiveRecord check is not included.
+For example, if ActiveRecord has not been `require`d, then the ActiveRecord check is not included.
 
 License
 -------
